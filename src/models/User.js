@@ -6,7 +6,7 @@ const userSchema = new mongoose.Schema({
     firstname: { type: String, required: true },
     lastname: { type: String, required: true },
     phone: { type: String, required: true, unique: true },
-    type: {  type: String, enum: ["recruiter", "applicant"], required: true  },
+    type: {  type: String, enum: ["recruiter", "applicant", "admin"], required: true  },
     password: { type: String, required:true },
     profile: { type: mongoose.Schema.Types.ObjectId, ref: 'Profile'},
 }, { timestamps: true });
