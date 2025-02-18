@@ -5,13 +5,10 @@ const User = require('../models/User');
 // Signup function
 exports.signup = async (req, res) => {
     const { firstname, lastname, email, password, phone, type } = req.body;
-
-    // Check for validation errors
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
     }
-
     try {
         const user = new User({ firstname, lastname, email, password, phone, type });
         await user.save();
@@ -24,21 +21,16 @@ exports.signup = async (req, res) => {
 // Login function
 exports.login = async (req, res) => {
     const { email, password } = req.body;
-
-    // Check for validation errors
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
     }
-
     try {
         const user = await User.findOne({ email });
         console.log(user.password)
         if (!user || !(await bcrypt.compare(password, user.password))) {
             return res.status(401).json({ message: 'Invalid email or password' });
         }
-
-        // Generate JWT token
         const token = jwt.sign({ userId: user._id, role: user.type }, 'your_jwt_secret', { expiresIn: '1h' });
         res.status(200).json({ message: 'Login successful', token });
     } catch (err) {

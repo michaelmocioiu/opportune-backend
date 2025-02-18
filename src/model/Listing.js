@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const jobListingSchema = new mongoose.Schema({
+const listingSchema = new mongoose.Schema({
   title: { type: String, required: true },
   description: { type: String, required: true },
   qualifications: { type: [String], required: true },
@@ -18,5 +18,5 @@ const jobListingSchema = new mongoose.Schema({
   recruiters: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }]
 }, { timestamps: true });
 
-const JobListing = mongoose.model("JobListing", jobListingSchema);
-module.exports = JobListing;
+const Listing = mongoose.model("Listing", listingSchema);
+module.exports = Listing;

@@ -1,18 +1,13 @@
-const express = require('express');
+const { createHandler } = require("graphql-http/lib/use/express");
+const schema = require("./gql/schema");
 const connectDB = require('./config/db');
-const userRoutes = require('./routes/userRoutes');
-const authRoutes = require('./routes/authRoutes');
-const cors = require('cors')
-const app = express();
+require("dotenv").config();
+
+const app = require("./app");
 connectDB();
 
-// Middleware to parse JSON requests
-app.use(express.json());
-app.use(cors())
-
 // Mount the routes
-app.use('/user/', userRoutes);
-app.use('/auth/', authRoutes)
+app.use("/graphql", createHandler({ schema: schema }));
 
 const PORT = process.env.PORT;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
