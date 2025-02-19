@@ -1,0 +1,1095 @@
+{
+	"info": {
+		"_postman_id": "e4f3f3e3-cd71-40fa-a639-3125ace0810a",
+		"name": "Opportune-Postman",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "38971408"
+	},
+	"item": [
+		{
+			"name": "Auth-old",
+			"item": [
+				{
+					"name": "signup",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstname\": \"michael\",\r\n    \"lastname\": \"mocioiu\",\r\n    \"email\": \"email@email.cosme\",\r\n    \"password\": \"skibidy\",\r\n    \"phone\": \"123459652\",\r\n    \"type\": \"applicant\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/auth/signup",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"auth",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"email@email.cosme\",\r\n    \"password\": \"skibidy\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/auth/login",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "QL",
+			"item": [
+				{
+					"name": "User",
+					"item": [
+						{
+							"name": "Signup",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation {\r\n  user {\r\n    signup(\r\n      first_name: \"Joe\"\r\n      last_name: \"Doe\"\r\n      email: \"joedoe@example.com\"\r\n      password: \"123\"\r\n      phone: \"2234527890\"\r\n      type: \"manager\"\r\n    ) {\r\n      _id\r\n      first_name\r\n      last_name\r\n      email\r\n      phone\r\n    }\r\n  }\r\n}\r\n",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/graphql",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "signup_applic",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "graphql",
+											"graphql": {
+												"query": "mutation {\r\n  user {\r\n    signup(\r\n      first_name: \"John\"\r\n      last_name: \"Doe\"\r\n      email: \"johndoe@example.com\"\r\n      password: \"123\"\r\n      phone: \"1234567890\"\r\n      type: \"applicant\"\r\n    ) {\r\n      _id\r\n      first_name\r\n      last_name\r\n      email\r\n      phone\r\n    }\r\n  }\r\n}\r\n",
+												"variables": ""
+											}
+										},
+										"url": {
+											"raw": "http://localhost:5000/graphql",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "5000",
+											"path": [
+												"graphql"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "content-type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 18 Feb 2025 17:39:06 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": {\n        \"user\": {\n            \"signup\": {\n                \"_id\": \"67b4c5bae18d9b6f68830114\",\n                \"first_name\": null,\n                \"last_name\": null,\n                \"email\": \"johndoe@example.com\",\n                \"phone\": null\n            }\n        }\n    }\n}"
+								},
+								{
+									"name": "Signup_recruiter",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "graphql",
+											"graphql": {
+												"query": "mutation {\r\n  user {\r\n    signup(\r\n      first_name: \"Jane\"\r\n      last_name: \"Doe\"\r\n      email: \"janedoe@example.com\"\r\n      password: \"123\"\r\n      phone: \"2234567890\"\r\n      type: \"recruiter\"\r\n    ) {\r\n      _id\r\n      first_name\r\n      last_name\r\n      email\r\n      phone\r\n    }\r\n  }\r\n}\r\n",
+												"variables": ""
+											}
+										},
+										"url": {
+											"raw": "http://localhost:5000/graphql",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "5000",
+											"path": [
+												"graphql"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "content-type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 18 Feb 2025 18:55:53 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": {\n        \"user\": {\n            \"signup\": {\n                \"_id\": \"67b4d7b9e3704d3143821618\",\n                \"first_name\": \"Jane\",\n                \"last_name\": \"Doe\",\n                \"email\": \"janedoe@example.com\",\n                \"phone\": \"2234567890\"\n            }\n        }\n    }\n}"
+								},
+								{
+									"name": "Signup_mgr",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "graphql",
+											"graphql": {
+												"query": "mutation {\r\n  user {\r\n    signup(\r\n      first_name: \"Joe\"\r\n      last_name: \"Doe\"\r\n      email: \"joedoe@example.com\"\r\n      password: \"123\"\r\n      phone: \"2234527890\"\r\n      type: \"manager\"\r\n    ) {\r\n      _id\r\n      first_name\r\n      last_name\r\n      email\r\n      phone\r\n    }\r\n  }\r\n}\r\n",
+												"variables": ""
+											}
+										},
+										"url": {
+											"raw": "http://localhost:5000/graphql",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "5000",
+											"path": [
+												"graphql"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "content-type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 18 Feb 2025 19:06:14 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": {\n        \"user\": {\n            \"signup\": {\n                \"_id\": \"67b4da26d23f16c881eb8b78\",\n                \"first_name\": \"Joe\",\n                \"last_name\": \"Doe\",\n                \"email\": \"joedoe@example.com\",\n                \"phone\": \"2234527890\"\n            }\n        }\n    }\n}"
+								}
+							]
+						},
+						{
+							"name": "login",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "query {\r\n  user {\r\n    login(email: \"johndoe@example.com\", password: \"123\")\r\n  }\r\n}",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/graphql",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "login",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "graphql",
+											"graphql": {
+												"query": "query {\r\n  user {\r\n    login(email: \"johndoe@example.com\", password: \"123\")\r\n  }\r\n}",
+												"variables": ""
+											}
+										},
+										"url": {
+											"raw": "http://localhost:5000/graphql",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "5000",
+											"path": [
+												"graphql"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "content-type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 18 Feb 2025 17:50:17 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": {\n        \"user\": {\n            \"login\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2N2I0Yzg1NDRiZGI5MDZmY2IyN2NjYzEiLCJpYXQiOjE3Mzk5MDEwMTcsImV4cCI6MTczOTkwNDYxN30.T5BIY5KDd_0AGb3J4aBSehPJ7E2MysleHHl8M3ErRtg\"\n        }\n    }\n}"
+								}
+							]
+						},
+						{
+							"name": "GetById",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "query {\r\n  user {\r\n    getById(id: \"67b4c8544bdb906fcb27ccc1\") {\r\n      _id\r\n      first_name\r\n      last_name\r\n      email\r\n      phone\r\n    }\r\n  }\r\n}\r\n",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/graphql",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "GetById",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "graphql",
+											"graphql": {
+												"query": "query {\r\n  user {\r\n    getById(id: \"67b4c8544bdb906fcb27ccc1\") {\r\n      _id\r\n      first_name\r\n      last_name\r\n      email\r\n      phone\r\n    }\r\n  }\r\n}\r\n",
+												"variables": ""
+											}
+										},
+										"url": {
+											"raw": "http://localhost:5000/graphql",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "5000",
+											"path": [
+												"graphql"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "content-type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 18 Feb 2025 17:54:51 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": {\n        \"user\": {\n            \"getById\": {\n                \"_id\": \"67b4c8544bdb906fcb27ccc1\",\n                \"first_name\": \"John\",\n                \"last_name\": \"Doe\",\n                \"email\": \"johndoe@example.com\",\n                \"phone\": \"1234567890\"\n            }\n        }\n    }\n}"
+								}
+							]
+						},
+						{
+							"name": "getbyemail",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "query {\r\n  user {\r\n    getByEmail(email: \"johndoe@example.com\") {\r\n      _id\r\n      first_name\r\n      last_name\r\n      email\r\n      phone\r\n    }\r\n  }\r\n}\r\n",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/graphql",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "New Request",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "graphql",
+											"graphql": {
+												"query": "query {\r\n  user {\r\n    getByEmail(email: \"johndoe@example.com\") {\r\n      _id\r\n      first_name\r\n      last_name\r\n      email\r\n      phone\r\n    }\r\n  }\r\n}\r\n",
+												"variables": ""
+											}
+										},
+										"url": {
+											"raw": "http://localhost:5000/graphql",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "5000",
+											"path": [
+												"graphql"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "content-type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 18 Feb 2025 18:00:37 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": {\n        \"user\": {\n            \"getByEmail\": {\n                \"_id\": \"67b4c8544bdb906fcb27ccc1\",\n                \"first_name\": \"John\",\n                \"last_name\": \"Doe\",\n                \"email\": \"johndoe@example.com\",\n                \"phone\": \"1234567890\"\n            }\n        }\n    }\n}"
+								}
+							]
+						},
+						{
+							"name": "delete",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation {\r\n    user {\r\n        delete(id: \"67b4d3efbf00e4e7b3f290d4\")\r\n    }\r\n}",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/graphql",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "New Request",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "graphql",
+											"graphql": {
+												"query": "mutation {\r\n    user {\r\n        delete(id: \"67b4c8544bdb906fcb27ccc1\")\r\n    }\r\n}",
+												"variables": ""
+											}
+										},
+										"url": {
+											"raw": "http://localhost:5000/graphql",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "5000",
+											"path": [
+												"graphql"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "content-type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 18 Feb 2025 18:18:47 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": {\n        \"user\": {\n            \"delete\": \"Employee deleted successfully!\"\n        }\n    }\n}"
+								}
+							]
+						},
+						{
+							"name": "getAll",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "query{\r\n    user{\r\n        getAll {\r\n      _id\r\n      first_name\r\n      last_name\r\n      email\r\n      phone\r\n    }\r\n    }\r\n}",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/graphql",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "New Request",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "graphql",
+											"graphql": {
+												"query": "query{\r\n    user{\r\n        getAll {\r\n      _id\r\n      first_name\r\n      last_name\r\n      email\r\n      phone\r\n    }\r\n    }\r\n}",
+												"variables": ""
+											}
+										},
+										"url": {
+											"raw": "http://localhost:5000/graphql",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "5000",
+											"path": [
+												"graphql"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "content-type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 18 Feb 2025 18:53:13 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": {\n        \"user\": {\n            \"getAll\": [\n                {\n                    \"_id\": \"67b4d709cd25bc54ed657c03\",\n                    \"first_name\": \"John\",\n                    \"last_name\": \"Doe\",\n                    \"email\": \"johndoe@example.com\",\n                    \"phone\": \"1234567890\"\n                }\n            ]\n        }\n    }\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Profile",
+					"item": [
+						{
+							"name": "Get by Userid",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "query {\r\n    profile {\r\n        getByUserId(userId: \"67b4d3efbf00e4e7b3f290d4\") {\r\n        _id\r\n        userId\r\n        bio\r\n        skills\r\n        experience\r\n        resumes\r\n        profile_photo\r\n        }\r\n    }\r\n}\r\n",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/graphql",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "getbyuserid",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "graphql",
+											"graphql": {
+												"query": "query {\r\n    profile {\r\n        getByUserId(userId: \"67b4d3efbf00e4e7b3f290d4\") {\r\n        _id\r\n        userId\r\n        bio\r\n        skills\r\n        experience\r\n        resumes\r\n        profile_photo\r\n        }\r\n    }\r\n}\r\n",
+												"variables": ""
+											}
+										},
+										"url": {
+											"raw": "http://localhost:5000/graphql",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "5000",
+											"path": [
+												"graphql"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "content-type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 18 Feb 2025 18:42:06 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": {\n        \"profile\": {\n            \"getByUserId\": {\n                \"_id\": \"67b4d3efbf00e4e7b3f290d6\",\n                \"userId\": \"67b4d3efbf00e4e7b3f290d4\",\n                \"bio\": \"\",\n                \"skills\": [],\n                \"experience\": [],\n                \"resumes\": [],\n                \"profile_photo\": \"\"\n            }\n        }\n    }\n}"
+								}
+							]
+						},
+						{
+							"name": "getAll",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "query{\r\n    profile {\r\n        getAll {\r\n      _id\r\n      userId\r\n      bio\r\n      skills\r\n      experience\r\n      resumes\r\n      profile_photo\r\n    }\r\n    }\r\n}",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/graphql",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "getall",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "graphql",
+											"graphql": {
+												"query": "query{\r\n    profile {\r\n        getAll {\r\n      _id\r\n      userId\r\n      bio\r\n      skills\r\n      experience\r\n      resumes\r\n      profile_photo\r\n    }\r\n    }\r\n}",
+												"variables": ""
+											}
+										},
+										"url": {
+											"raw": "http://localhost:5000/graphql",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "5000",
+											"path": [
+												"graphql"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "content-type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 18 Feb 2025 18:42:16 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": {\n        \"profile\": {\n            \"getAll\": [\n                {\n                    \"_id\": \"67b4d3efbf00e4e7b3f290d6\",\n                    \"userId\": \"67b4d3efbf00e4e7b3f290d4\",\n                    \"bio\": \"\",\n                    \"skills\": [],\n                    \"experience\": [],\n                    \"resumes\": [],\n                    \"profile_photo\": \"\"\n                }\n            ]\n        }\n    }\n}"
+								}
+							]
+						},
+						{
+							"name": "update",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation  {\r\n    profile {\r\n        update(\r\n            _id: \"67b4d709cd25bc54ed657c05\"\r\n            userId: \"67b4d709cd25bc54ed657c03\"\r\n            bio: \"\"\r\n            skills: [\"eating\"]\r\n            experience: []\r\n            resumes: []\r\n            profile_photo: \"\"\r\n  ) {\r\n    _id\r\n    userId\r\n    bio\r\n    skills\r\n    experience\r\n    resumes\r\n    profile_photo\r\n  }\r\n    }\r\n}",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/graphql",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "New Request",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "graphql",
+											"graphql": {
+												"query": "mutation  {\r\n    profile {\r\n        update(\r\n            _id: \"67b4d709cd25bc54ed657c05\"\r\n            userId: \"67b4d709cd25bc54ed657c03\"\r\n            bio: \"\"\r\n            skills: [\"eating\"]\r\n            experience: []\r\n            resumes: []\r\n            profile_photo: \"\"\r\n  ) {\r\n    _id\r\n    userId\r\n    bio\r\n    skills\r\n    experience\r\n    resumes\r\n    profile_photo\r\n  }\r\n    }\r\n}",
+												"variables": ""
+											}
+										},
+										"url": {
+											"raw": "http://localhost:5000/graphql",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "5000",
+											"path": [
+												"graphql"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "content-type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 18 Feb 2025 18:53:29 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": {\n        \"profile\": {\n            \"update\": {\n                \"_id\": \"67b4d709cd25bc54ed657c05\",\n                \"userId\": \"67b4d709cd25bc54ed657c03\",\n                \"bio\": \"\",\n                \"skills\": [\n                    \"eating\"\n                ],\n                \"experience\": [],\n                \"resumes\": [],\n                \"profile_photo\": \"\"\n            }\n        }\n    }\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Company",
+					"item": [
+						{
+							"name": "create",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation {\r\n    company{\r\n\r\n  create(\r\n    name: \"Tech Innovations Inc.\"\r\n    website: \"https://techinnovations.com\"\r\n    industry: \"Technology\"\r\n    address: \"1234 Tech Lane\"\r\n    city: \"Techville\"\r\n    country: \"Techland\"\r\n    description: \"A leading technology company specializing in AI solutions.\"\r\n    business_registry_id: \"123456789\"\r\n    CRA_BN: \"987654321\"\r\n    managers: [\"67b4da26d23f16c881eb8b78\"]\r\n    recruiters: [\"67b4d7b9e3704d3143821618\"]\r\n  ) {\r\n    _id\r\n    name\r\n    website\r\n    industry\r\n    managers\r\n    recruiters\r\n  }\r\n    }\r\n}\r\n",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/graphql",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get by id",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5000/graphql",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Listing",
+					"item": []
+				},
+				{
+					"name": "Application",
+					"item": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "test_email",
+			"value": "johndoe2@example.com",
+			"type": "string"
+		},
+		{
+			"key": "uid",
+			"value": "67b4c8544bdb906fcb27ccc1",
+			"type": "default"
+		}
+	]
+}
