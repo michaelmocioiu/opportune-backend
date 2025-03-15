@@ -24,13 +24,10 @@ const profileResolvers = {
     return await Profile.find();
   },
 
-  // Update a profile based on userId
   update: async (parent, { _id, userId, bio, skills, experience, resumes, profile_photo }, context) => {
     try {
-      // Log incoming data for debugging
       console.log("Updating profile with data:", { _id, userId, bio, skills, experience, resumes, profile_photo });
 
-      // Ensure defaults for fields
       const profile = await Profile.findOneAndUpdate(
         { _id: _id },
         {
@@ -44,7 +41,6 @@ const profileResolvers = {
         { new: true }
       );
 
-      // Log the result of the update
       console.log("Updated profile:", profile);
 
       if (!profile) {

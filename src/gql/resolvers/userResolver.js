@@ -10,12 +10,12 @@ const userResolvers = {
         if (!user) {
             throw new Error("User not found!");
         }
-        const isMatch = await bcrypt.compare(password, user.password);
+        const isMatch = await user.comparePassword(password);
         if (!isMatch) {
             throw new Error("Incorrect password!");
         }
 
-        const token = jwt.sign({ userId: user.id }, "secret", {
+        const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET, {
             expiresIn: "1h",
         });
 
@@ -30,8 +30,8 @@ const userResolvers = {
             throw new Error("User already exists!");
         }
 
-        const hashedPassword = await bcrypt.hash(password, 12);
-        const user = new User({ first_name, last_name, email, password: hashedPassword, phone, type });
+
+        const user = new User({ first_name, last_name, email, password, phone, type });
 
         const savedUser = await user.save();
 

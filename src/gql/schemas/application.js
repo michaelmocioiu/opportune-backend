@@ -8,13 +8,23 @@ const ApplicationQuery = new GraphQLObjectType({
     fields: {
         getById: {
             type: ApplicationType,
-            args: { applicationId: { type: GraphQLID } },
+            args: { _id: { type: GraphQLID } },
             resolve: resolvers.application.getById
         },
         getAll: {
             type: new GraphQLList(ApplicationType),
             resolve: resolvers.application.getAll
-        }
+        },
+        getByListingId: {
+            type: new GraphQLList(ApplicationType),
+            args: { listingId: { type: GraphQLID } },
+            resolve: resolvers.application.getByListingId
+        },
+        getByUserId: {
+            type: new GraphQLList(ApplicationType),
+            args: { userId: { type: GraphQLID } },
+            resolve: resolvers.application.getByUserId
+        },
     }
 });
 
