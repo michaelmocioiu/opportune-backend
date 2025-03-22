@@ -132,10 +132,17 @@ const ConversationType = new GraphQLObjectType({
         messages: { type: new GraphQLList(MessageType) }
     }
 });
+
+
 module.exports = {
     UserType,
     ProfileType,
     CompanyType,
     ListingType,
-    ApplicationType
+    ApplicationType,
+    ConversationType,
+    UploadType
 }
+gql`type Mutation {
+    
+}`
