@@ -74,10 +74,10 @@ const applicationResolvers = {
         {status: "denied"}
       )
       if (!profile) {
-        throw new Error('Application denial failed')
+        throw new Error('Application approval failed')
       }
       //sendNotification()
-      console.log("Application denied: ", application)
+      console.log("Application Approved: ", application)
       return application
     } catch (error) {
       console.error("Error updating application status:", error.message);

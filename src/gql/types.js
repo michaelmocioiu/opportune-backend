@@ -1,4 +1,4 @@
-const { GraphQLObjectType, GraphQLString, GraphQLID, GraphQLInt, GraphQLList,GraphQLNonNull } = require("graphql");
+const { GraphQLObjectType, GraphQLString, GraphQLID, GraphQLInt, GraphQLList, GraphQLFloat, GraphQLNonNull } = require("graphql");
 
 const UserType = new GraphQLObjectType({
     name: 'User',
