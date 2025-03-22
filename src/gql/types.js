@@ -1,4 +1,4 @@
-const { GraphQLObjectType, GraphQLString, GraphQLID, GraphQLInt, GraphQLList } = require("graphql");
+const { GraphQLObjectType, GraphQLString, GraphQLID, GraphQLInt, GraphQLList,GraphQLNonNull } = require("graphql");
 
 const UserType = new GraphQLObjectType({
     name: 'User',
@@ -72,14 +72,66 @@ const ApplicationType = new GraphQLObjectType({
         resume_url: { type: GraphQLID },
         status: { type: GraphQLString },
         date_created: { type: GraphQLString },
-        prompt_answers: { type: GraphQLString },
+        prompt_answers: { type: new  GraphQLList(GraphQLString)},
         listing: { type: GraphQLID },
         applicant: { type: GraphQLID },
     }
 
 });
 
+const ReviewType = new GraphQLObjectType({
+    name: "Review",
+    fields: () => ({
+        _id: { type: GraphQLID },
+        userId: { type: GraphQLID },
+        company: { type: GraphQLID },
+        position: {
+            type: new GraphQLObjectType({
+                name: "Position",
+                fields: {
+                    title: { type: GraphQLString },
+                    startDate: { type: GraphQLString },
+                    endDate: { type: GraphQLString }
+                }
+            })
+        },
+        ratings: {
+            type: new GraphQLObjectType({
+                name: "Ratings",
+                fields: {
+                    managementQuality: { type: GraphQLFloat },
+                    workplaceCulture: { type: GraphQLFloat },
+                    growthPotential: { type: GraphQLFloat }
+                }
+            })
+        },
+        pros: { type: new GraphQLList(GraphQLString) },
+        cons: { type: new GraphQLList(GraphQLString) },
+        additionalComments: { type: GraphQLString }
+    })
+});
 
+const MessageType = new GraphQLObjectType({
+    name: "Message",
+    fields: {
+        id: { type: GraphQLID },
+        listing: { type: new GraphQLNonNull(GraphQLID) },
+        applicant: { type: new GraphQLNonNull(GraphQLID) },
+        content: { type: new GraphQLNonNull(GraphQLString) },
+        createdAt: { type: GraphQLString },
+        updatedAt: { type: GraphQLString }
+    }
+});
+
+// Conversation Type
+const ConversationType = new GraphQLObjectType({
+    name: "Conversation",
+    fields: {
+        listing: { type: new GraphQLNonNull(GraphQLID) },
+        applicant: { type: new GraphQLNonNull(GraphQLID) },
+        messages: { type: new GraphQLList(MessageType) }
+    }
+});
 module.exports = {
     UserType,
     ProfileType,

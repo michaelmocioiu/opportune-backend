@@ -1,4 +1,4 @@
-const { GraphQLObjectType, GraphQLString, GraphQLID, GraphQLList, GraphQLInt } = require("graphql");
+const { GraphQLObjectType, GraphQLString, GraphQLID, GraphQLList, GraphQLInt, GraphQLNonNull } = require("graphql");
 const { ListingType } = require("../types");
 const resolvers = require("../resolvers");
 
