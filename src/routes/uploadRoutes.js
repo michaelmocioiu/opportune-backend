@@ -1,29 +1,78 @@
-// opportune-backend/src/routes/upload.js
 const express = require('express');
-const router = express.Router();
+const router = express.Router()
+const multer = require('multer');
 const { uploadUser, uploadCompany } = require('../middleware/multer');
-const { protect } = require('../middleware/auth')
+const protect = require('../middleware/auth');
 
-// User file uploads
-router.post("/user/upload", protect, uploadUser.single("img"), (req, res) => {
-  if (!req.file) return res.status(400).json({ error: "No file uploaded" });
-  res.json({ message: "File uploaded successfully", filename: req.file.filename });
-});
+// Helper function to handle file upload response
+const handleUploadResponse = (req, res) => {
+    if (!req.file) {
+        return res.status(400).json({
+            success: false,
+            error: 'No file uploaded'
+        });
+    }
 
-router.post("/user/upload/resume", protect, uploadUser.single("resume"), (req, res) => {
-  if (!req.file) return res.status(400).json({ error: "No resume uploaded" });
-  res.json({ message: "Resume uploaded successfully", filename: req.file.filename });
-});
+    const fileUrl = `/uploads/${req.file.path.split('uploads/')[1]}`;
+    res.status(200).json({
+        success: true,
+        message: 'File uploaded successfully',
+        data: {
+            filename: req.file.filename,
+            url: fileUrl,
+            mimetype: req.file.mimetype,
+            size: req.file.size
+        }
+    });
+};
 
-router.post("/user/upload/coverletter", protect, uploadUser.single("coverletter"), (req, res) => {
-  if (!req.file) return res.status(400).json({ error: "No cover letter uploaded" });
-  res.json({ message: "Cover letter uploaded successfully", filename: req.file.filename });
-});
+// Error handler middleware
+const uploadErrorHandler = (err, req, res, next) => {
+    if (err instanceof multer.MulterError) {
+        if (err.code === 'LIMIT_FILE_SIZE') {
+            return res.status(400).json({
+                success: false,
+                error: 'File size too large. Maximum size is 5MB'
+            });
+        }
+    }
+    res.status(400).json({
+        success: false,
+        error: err.message
+    });
+};
 
-// Company file uploads
-router.post("/company/upload", uploadCompany.single("img"), (req, res) => {
-  if (!req.file) return res.status(400).json({ error: "No file uploaded" });
-  res.json({ message: "Company file uploaded successfully", filename: req.file.filename });
-});
+// User Routes
+// Upload profile image
+router.post('/user/:userId/img',
+    protect,
+    uploadUser.single('img'),
+    handleUploadResponse
+);
+
+// Upload CV
+router.post('/user/:userId/cv',
+    protect,
+    uploadUser.single('cv'),
+    handleUploadResponse
+);
+
+// Upload Resume
+router.post('/user/:userId/resume',
+    protect,
+    uploadUser.single('resume'),
+    handleUploadResponse
+);
+
+// Company Routes
+// Upload company image
+router.post('/company/:companyId/img',
+    protect,
+    uploadCompany.single('img'),
+    handleUploadResponse
+);
+
+// Apply error handler
+// router.use(uploadErrorHandler);
 
 module.exports = router;

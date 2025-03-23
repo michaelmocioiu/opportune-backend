@@ -140,9 +140,5 @@ module.exports = {
     CompanyType,
     ListingType,
     ApplicationType,
-    ConversationType,
-    UploadType
+    ConversationType
 }
-gql`type Mutation {
-    
-}`
