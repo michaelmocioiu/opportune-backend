@@ -24,7 +24,7 @@ const formatFilename = async (userId, file) => {
 
 const fileFilter = (req, file, cb) => {
     try {
-        const folder = file.fieldname;
+        const folder = ['cv', 'resume'].includes(file.fieldname) ? file.fieldname : 'img';
         const allowedTypes = FILE_TYPES[folder];
 
         if (!allowedTypes || !allowedTypes.includes(file.mimetype)) {
@@ -59,6 +59,7 @@ const userStorage = multer.diskStorage({
             if (!req.user) return cb(new Error("Unauthorized"), null);
             const userId = req.params.userId || req.user.id;
             if (userId !== req.user.id) return cb(new Error("Unauthorized: You can only upload files to your own account"), null);
+            
 
             const folder = ['cv', 'resume'].includes(file.fieldname) ? file.fieldname : 'img';
             const uploadDir = await getUploadPath("user", userId, folder);
@@ -69,7 +70,14 @@ const userStorage = multer.diskStorage({
     },
     filename: async (req, file, cb) => {
         try {
-            const filename = await formatFilename(req.user.id, file);
+            let filename;
+        if (file.fieldname === 'pfp') {
+            filename = `${req.user.id}-pfp`;
+        } else if (file.fieldname === 'cover') {
+            filename = `${req.user.id}-cover`;
+        } else {
+            filename = await formatFilename(req.user.id, file);
+        }
             cb(null, filename);
         } catch (err) {
             cb(err, null);
