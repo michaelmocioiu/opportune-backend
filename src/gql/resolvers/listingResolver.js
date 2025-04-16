@@ -12,13 +12,13 @@ const listingResolvers = {
     return await Listing.find();
   },
   create: async (parent, args) => {
-    const { 
-      title, description, qualifications, work_type, pay_type, 
-      pay_amt, start_date, end_date, address, tags, prompts, available 
+    const {
+      title, description, qualifications, work_type, pay_type,
+      pay_amt, start_date, end_date, address, tags, prompts, available
     } = args;
 
     const newListing = new Listing({
-      title, description, qualifications, work_type, pay_type, 
+      title, description, qualifications, work_type, pay_type,
       pay_amt, start_date, end_date, address, tags, prompts, available
     });
 
