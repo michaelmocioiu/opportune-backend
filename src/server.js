@@ -1,5 +1,6 @@
 const connectDB = require('./config/db');
 const { uploadRoutes } = require("./routes/uploadRoutes");
+
 require("dotenv").config();
 
 const app = require("./app");

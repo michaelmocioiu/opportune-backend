@@ -22,14 +22,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', (req, res, next) => {
     const query = (req.body.query || '');
+    console.log(req.body)
     if (query.includes('login') || query.includes('signup')) {
-        console.log("hahahah")
         return next();
     }
     authMiddleware(req, res, next);
 });
 
-app.use("/api/graphql", createHandler({ schema: schema }));
+app.use("/graphql", createHandler({ schema: schema }));
 app.use("/api/upload",  uploadRoutes);
 
 module.exports = app;
